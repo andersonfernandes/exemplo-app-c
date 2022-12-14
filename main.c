@@ -27,6 +27,6 @@ int main(int argc, char const *argv[])
         case 5:
             printf("Finalizando app...\n\n");
         }
-    } while (op_menu_principal != 2);
+    } while (op_menu_principal != 5);
     return 0;
 }

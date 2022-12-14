@@ -15,7 +15,7 @@ int menu_principal()
         printf("Opcao > ");
         scanf("%d", &opcao);
         getchar();
-        if (opcao > 0 && opcao < 5)
+        if (opcao > 0 && opcao < 6)
         {
             return opcao;
         }
