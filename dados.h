@@ -34,6 +34,7 @@ typedef struct
     Professor *professor;
     Aluno lista_alunos[100];
     float media_turma;
+    int qtd_alunos;
 } Turma;
 
 Endereco *criarEndereco(char *logradouro,
@@ -52,11 +53,20 @@ Aluno *atualizarAluno(Aluno *aluno, Aluno *novo_aluno);
 void destruirAluno(Aluno *aluno);
 void destruirEndereco(Endereco *);
 
+/* --------------------- */
 Professor *criarProfessor(char *matricula,
                   char *cpf,
                   char *nome,
                   Endereco *end);
                   
+Professor *atualizarProfessor(Professor *professor, Professor *novo_professor); 
+
 void destruirProfessor(Professor *professor);
+
+/* --------------------- */
+
+Turma *criarTurma(char *codigo_turma,
+                  char *nome_disciplina,
+                  float media_turma);
 
 #endif

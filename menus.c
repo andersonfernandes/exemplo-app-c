@@ -68,3 +68,25 @@ int menu_crud_professor()
 
     } while (1);
 }
+int menu_crud_turma()
+{
+    int opcao = 0;
+    do
+    {
+        printf("== Menu turma==\n\n");
+        printf("1 - Criar turma\n");
+        printf("2 - Ler turma\n");
+        printf("3 - Atualizar turma\n");
+        printf("4 - Deletar turma\n");
+        printf("5 - Voltar menu anterior\n");
+        printf("Opcao > ");
+        scanf("%d", &opcao);
+        getchar();
+        if (opcao > 0 && opcao < 6)
+        {
+            return opcao;
+        }
+        printf("Opcao inválida!! Tente novamente\n\n");
+
+    } while (1);
+}
