@@ -138,3 +138,17 @@ Turma *criarTurma(char *codigo_turma,
 
     return turma;
 }
+
+Turma *adicionarAluno(Turma *turma, Aluno *aluno) {
+    if (turma && aluno) 
+    {
+        strcpy(turma->lista_alunos[turma->qtd_alunos].matricula, aluno->matricula);
+        strcpy(turma->lista_alunos[turma->qtd_alunos].nome, aluno->nome);
+        strcpy(turma->lista_alunos[turma->qtd_alunos].cpf, aluno->cpf);
+        turma->lista_alunos[turma->qtd_alunos].endereco = aluno->endereco;
+        turma->qtd_alunos += 1;
+        
+        printf("%s", turma->lista_alunos[turma->qtd_alunos].nome);
+    }
+    return turma;
+}
