@@ -19,9 +19,9 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
         {
             // Passo 1: buscar posicao disponível
             int i = 0;
-            for (; i < *qtd_atual_aluno; i++)
+            for (; i <= *qtd_atual_aluno; i++)
             {
-                if (alunos[i] != NULL)
+                if (alunos[i] == NULL)
                 {
                     // significa que esta posição está livre para uso
                     break;
@@ -99,9 +99,9 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
         {
             // Passo 1: buscar posicao disponível
             int i = 0;
-            for (; i < *qtd_atual_professor; i++)
+            for (; i <= *qtd_atual_professor; i++)
             {
-                if (professores[i] != NULL)
+                if (professores[i] == NULL)
                 {
                     // significa que esta posição está livre para uso
                     break;
@@ -164,49 +164,78 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
     }
 }
 
-void tratador_menu_turma(Turma **turmas, int *qtd_atual_turma)
+void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma)
 {
     int opcao = menu_crud_turma();
     Turma *turma = NULL;
+    Aluno *aluno = NULL;
     switch (opcao)
     {
-    case 1:
-    
-        if (*qtd_atual_turma >= MAX_TURMA)
-        {
-            printf("Número máximo de turmas atingido\n");
-        }
-        else
-        {
-            // Passo 1: buscar posicao disponível
-            int i = 0;
-            for (; i < *qtd_atual_turma; i++)
+        case 1:
+        
+            if (*qtd_atual_turma >= MAX_TURMA)
             {
-                if (turmas[i] != NULL)
+                printf("Número máximo de turmas atingido\n");
+            }
+            else
+            {
+                // Passo 1: buscar posicao disponível
+                int i = 0;
+                for (; i <= *qtd_atual_turma; i++)
                 {
-                    // significa que esta posição está livre para uso
-                    break;
+                    if (turmas[i] == NULL)
+                    {
+                        // significa que esta posição está livre para uso
+                        break;
+                    }
+                }
+                Turma *turma = construir_turma();
+                turmas[i] = turma;
+                *qtd_atual_turma++;
+            }
+            break;
+        case 2:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                imprimir_turma(turma);
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
+        case 3:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                posicao = 0;
+                aluno = buscar_aluno(alunos, &posicao);
+
+                if (aluno)
+                {
+                    adicionar_aluno(turma, aluno);
+                    printf("Aluno adicionado com sucesso!\n");
+                }
+                else
+                {
+                    printf("Aluno não encontrado!!\n");
                 }
             }
-            Turma *turma = construir_turma();
-            turmas[i] = turma;
-            *qtd_atual_turma++;
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
         }
-        break;
-    case 2:
-    {
-        int posicao = 0;
-        turma = buscar_turma(turmas, &posicao);
-        if (turma)
-        {
-            imprimir_turma(turma);
-        }
-        else
-        {
-            printf("Turma não encontrada!!\n");
-        }
-        break;
-    }
+        default:
+            printf("Retornando ao menu principal\n");
+            break;
     }
 }
 
@@ -232,11 +261,11 @@ Endereco *construir_endereco()
 Aluno *construir_aluno()
 {
     Aluno aluno;
-    printf("Matrícula\t> ");
+    printf("Matrícula do aluno\t> ");
     fgets(aluno.matricula, 9, stdin);
-    printf("CPF\t> ");
+    printf("CPF do aluno\t> ");
     fgets(aluno.cpf, 13, stdin);
-    printf("Nome\t> ");
+    printf("Nome do aluno\t> ");
     fgets(aluno.nome, 49, stdin);
     aluno.endereco = construir_endereco();
     return criarAluno(aluno.matricula, aluno.cpf, aluno.nome, aluno.endereco);
@@ -254,7 +283,7 @@ Aluno *atualizar_aluno(Aluno *aluno)
 Aluno *buscar_aluno(Aluno **alunos, int *posicao)
 {
     char matricula[50];
-    printf("Matrícula > ");
+    printf("Matrícula do aluno > ");
     fgets(matricula, 49, stdin);
     Aluno *resultado = NULL;
     int pos_resultado = -1;
@@ -274,9 +303,9 @@ Aluno *buscar_aluno(Aluno **alunos, int *posicao)
 
 void imprimir_aluno(Aluno *aluno)
 {
-    printf("Matrícula: %s", aluno->matricula);
-    printf("Nome: %s", aluno->nome);
-    printf("CPF: %s", aluno->cpf);
+    printf("Matrícula do aluno: %s", aluno->matricula);
+    printf("Nome do aluno: %s", aluno->nome);
+    printf("CPF do aluno: %s", aluno->cpf);
     imprimir_endereco(aluno->endereco);
 }
 
@@ -294,11 +323,11 @@ void imprimir_endereco(Endereco *endereco)
 Professor *construir_professor()
 {
     Professor professor;
-    printf("Matrícula\t> ");
+    printf("Matrícula do professor\t> ");
     fgets(professor.matricula, 9, stdin);
-    printf("CPF\t> ");
-    fgets(professor.cpf, 12, stdin);
-    printf("Nome\t> ");
+    printf("CPF do professor\t> ");
+    fgets(professor.cpf, 13, stdin);
+    printf("Nome do professor\t> ");
     fgets(professor.nome, 49, stdin);
     professor.endereco = construir_endereco();
     return criarProfessor(professor.matricula, professor.cpf, professor.nome, professor.endereco);
@@ -316,7 +345,7 @@ Professor *atualizar_professor(Professor *professor)
 Professor *buscar_professor(Professor **professores, int *posicao)
 {
     char matricula[50];
-    printf("Matrícula > ");
+    printf("Matrícula do professor> ");
     fgets(matricula, 49, stdin);
     Professor *resultado = NULL;
     int pos_resultado = -1;
@@ -336,9 +365,9 @@ Professor *buscar_professor(Professor **professores, int *posicao)
 
 void imprimir_professor(Professor *professor)
 {
-    printf("Matrícula: %s", professor->matricula);
-    printf("Nome: %s", professor->nome);
-    printf("CPF: %s", professor->cpf);
+    printf("Matrícula do professor: %s", professor->matricula);
+    printf("Nome do professor: %s", professor->nome);
+    printf("CPF do professor: %s", professor->cpf);
     imprimir_endereco(professor->endereco);
 }
 
@@ -347,9 +376,9 @@ void imprimir_professor(Professor *professor)
 Turma *construir_turma()
 {
     Turma turma;
-    printf("Codigo\t> ");
+    printf("Codigo da turma\t> ");
     fgets(turma.codigo, 50, stdin);
-    printf("Nome da Disciplina\t> ");
+    printf("Nome da disciplina\t> ");
     fgets(turma.nome_disciplina, 50, stdin);
     printf("Media\t> ");
     scanf("%f", &turma.media_turma);
@@ -360,7 +389,7 @@ Turma *construir_turma()
 Turma *buscar_turma(Turma **turmas, int *posicao)
 {
     char codigo[50];
-    printf("Codigo > ");
+    printf("Codigo da turma > ");
     fgets(codigo, 49, stdin);
     Turma *resultado = NULL;
     int pos_resultado = -1;
@@ -380,20 +409,28 @@ Turma *buscar_turma(Turma **turmas, int *posicao)
 
 void imprimir_turma(Turma *turma)
 {
+    printf("== Turma %s ==", turma->codigo);
     printf("Codigo: %s", turma->codigo);
     printf("Nome da Disciplina: %s", turma->nome_disciplina);
+    printf("Media da Turma: %.2f\n", turma->media_turma);
+    printf("Quantidade de alunos: %d\n", turma->qtd_alunos);
+
     if (turma->professor != NULL)
     {
         printf("Professor: %s", turma->professor->nome);
     }
-
-    printf("Media da Turma: %f", turma->media_turma);
-
-    if (turma->lista_alunos != NULL) {
-        for (int i = 0; i<= turma->qtd_alunos; i++)
+    
+    if (turma->qtd_alunos != 0) {
+        for (int i = 0; i < turma->qtd_alunos; i++)
         {
-            printf("Aluno: %s", turma->lista_alunos[i].nome);
+            printf("Nº do aluno: %d\n", i+1);
+            printf("Nome do aluno: %s", turma->lista_alunos[i].nome);
+            printf("Matrícula do aluno: %s", turma->lista_alunos[i].matricula);
         }
     }
-    printf("Codigo: %s", turma->codigo);
+}
+
+void adicionar_aluno(Turma *turma, Aluno *aluno)
+{
+    adicionarAluno(turma, aluno);
 }

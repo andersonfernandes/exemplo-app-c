@@ -69,4 +69,6 @@ Turma *criarTurma(char *codigo_turma,
                   char *nome_disciplina,
                   float media_turma);
 
+Turma *adicionarAluno(Turma *turma, Aluno *aluno);
+
 #endif
