@@ -235,7 +235,7 @@ Aluno *construir_aluno()
     printf("Matrícula\t> ");
     fgets(aluno.matricula, 9, stdin);
     printf("CPF\t> ");
-    fgets(aluno.cpf, 12, stdin);
+    fgets(aluno.cpf, 13, stdin);
     printf("Nome\t> ");
     fgets(aluno.nome, 49, stdin);
     aluno.endereco = construir_endereco();
@@ -245,7 +245,7 @@ Aluno *atualizar_aluno(Aluno *aluno)
 {
     Aluno novo_aluno;
     printf("CPF\t> ");
-    fgets(novo_aluno.cpf, 12, stdin);
+    fgets(novo_aluno.cpf, 13, stdin);
     printf("Nome\t> ");
     fgets(novo_aluno.nome, 49, stdin);
     novo_aluno.endereco = construir_endereco();
@@ -387,7 +387,7 @@ void imprimir_turma(Turma *turma)
         printf("Professor: %s", turma->professor->nome);
     }
 
-    printf("Media da Turma: %s", turma->media_turma);
+    printf("Media da Turma: %f", turma->media_turma);
 
     if (turma->lista_alunos != NULL) {
         for (int i = 0; i<= turma->qtd_alunos; i++)
