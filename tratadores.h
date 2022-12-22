@@ -5,7 +5,7 @@
 void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno);
 void tratador_menu_professor(Professor **professores, int *qtd_atual_professor);
 void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma);
-void tratador_menu_estatisticas(Turma **turmas, int qtd_atual_turma, Professor **professores, int qtd_atual_professor);
+void tratador_menu_estatisticas(Turma **turmas, Professor **professores);
 
 Endereco *construir_endereco();
 void imprimir_endereco(Endereco *endereco);
@@ -24,5 +24,9 @@ Turma *construir_turma();
 Turma *buscar_turma(Turma **turmas, int *posicao);
 void imprimir_turma(Turma *turma);
 void adicionar_aluno(Turma *turma, Aluno *aluno);
+
+void imprimir_nomes_dos_professores(Professor **professores);
+void imprimir_professores_sem_turma(Professor **professores, Turma **turmas);
+void imprimir_media_de_turmas(Turma **turmas);
 
 #endif

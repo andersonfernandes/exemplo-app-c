@@ -233,12 +233,13 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma)
     }
 }
 
-void tratador_menu_estatisticas(Turma **turmas, int qtd_atual_turma, Professor **professores, int qtd_atual_professor)
+void tratador_menu_estatisticas(Turma **turmas, Professor **professores)
 {
     int opcao = menu_estatisticas();
     switch (opcao)
     {
         case 1:
+            imprimir_nomes_dos_professores(professores);
             break;
         case 2:
             break;
@@ -440,4 +441,27 @@ void imprimir_turma(Turma *turma)
 void adicionar_aluno(Turma *turma, Aluno *aluno)
 {
     adicionarAluno(turma, aluno);
+}
+
+void imprimir_nomes_dos_professores(Professor **professores)
+{
+    if (professores[0] == NULL)
+    {
+        printf("\nSem professores cadastrados.\n\n");
+        return;
+    }
+
+    printf("== Lista de Professores ==\n\n");
+
+    for (int i = 0; i < MAX_PROFESSOR; i++)
+    {
+        if (professores[i] == NULL)
+        {
+
+            printf("\n");
+            return;
+        }
+
+        printf("> %s", professores[i]->nome);
+    }
 }

@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
             tratador_menu_turma(turmas, alunos, &qtd_atual_turma);
             break;
         case 4:
-            tratador_menu_estatisticas(turmas, qtd_atual_turma, professores, qtd_atual_professor);
+            tratador_menu_estatisticas(turmas, professores);
             break;
         case 5:
             printf("Finalizando app...\n\n");
