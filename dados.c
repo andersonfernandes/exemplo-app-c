@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
+/* --- Aluno --- */
+
 Aluno *criarAluno(char *matricula,
                   char *cpf,
                   char *nome,
@@ -11,7 +13,7 @@ Aluno *criarAluno(char *matricula,
     Aluno *aluno = (Aluno *)malloc(sizeof(Aluno));
     if (aluno)
     {
-        strcpy(aluno->matricula, matricula); // Copia matricula para aluno->matricula
+        strcpy(aluno->matricula, matricula);
         strcpy(aluno->cpf, cpf);
         strcpy(aluno->nome, nome);
         aluno->endereco = end;
@@ -33,6 +35,18 @@ Aluno *atualizarAluno(Aluno *aluno, Aluno *novo_aluno)
     }
     return aluno;
 }
+
+void destruirAluno(Aluno *aluno)
+{
+    if (aluno)
+    {
+        Endereco *end = aluno->endereco;
+        destruirEndereco(end);
+        free(aluno);
+    }
+}
+
+/* --- Endereco --- */
 
 Endereco *criarEndereco(char *logradouro,
                         char *bairro,
@@ -56,24 +70,13 @@ Endereco *criarEndereco(char *logradouro,
     return endereco;
 }
 
-void destruirAluno(Aluno *aluno)
-{
-    if (aluno)
-    {
-        Endereco *end = aluno->endereco;
-        destruirEndereco(end);
-        free(aluno);
-    }
-}
-
 void destruirEndereco(Endereco *endereco)
 {
     if (endereco)
         free(endereco);
 }
 
-
-/*  ----------------------  */
+/* --- Professor --- */
 
 Professor *criarProfessor(char *matricula,
                   char *cpf,
@@ -83,7 +86,7 @@ Professor *criarProfessor(char *matricula,
     Professor *professor = (Professor *)malloc(sizeof(Professor));
     if (professor)
     {
-        strcpy(professor->matricula, matricula); // Copia matricula para professor->matricula
+        strcpy(professor->matricula, matricula);
         strcpy(professor->cpf, cpf);
         strcpy(professor->nome, nome);
         professor->endereco = end;
@@ -117,7 +120,7 @@ void destruirProfessor(Professor *professor)
 }
 
 
-/*  ----------------------  */
+/* --- Turma --- */
 
 Turma *criarTurma(char *codigo_turma,
                   char *nome_disciplina,
