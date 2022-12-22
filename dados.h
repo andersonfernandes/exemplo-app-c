@@ -32,7 +32,7 @@ typedef struct
     char codigo[50];
     char nome_disciplina[50];
     Professor *professor;
-    Aluno lista_alunos[100];
+    Aluno *lista_alunos[100];
     float media_turma;
     int qtd_alunos;
 } Turma;
@@ -74,5 +74,7 @@ Turma *criarTurma(char *codigo_turma,
 Turma *adicionarAluno(Turma *turma, Aluno *aluno);
 
 void destruirTurma(Turma *turma);
+
+Turma *adicionarProfessor(Turma *turma, Professor *professor);
 
 #endif
