@@ -75,4 +75,6 @@ Turma *adicionarAluno(Turma *turma, Aluno *aluno);
 
 void destruirTurma(Turma *turma);
 
+Turma *adicionarProfessor(Turma *turma, Professor *professor);
+
 #endif

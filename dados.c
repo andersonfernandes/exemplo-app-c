@@ -149,7 +149,8 @@ Turma *criarTurma(char *codigo_turma,
     return turma;
 }
 
-Turma *adicionarAluno(Turma *turma, Aluno *aluno) {
+Turma *adicionarAluno(Turma *turma, Aluno *aluno) 
+{
     if (turma && aluno) 
     {
         strcpy(turma->lista_alunos[turma->qtd_alunos].matricula, aluno->matricula);
@@ -165,4 +166,17 @@ void destruirTurma(Turma *turma)
 {
     if (turma)
         free(turma);
+}
+
+Turma *adicionarProfessor(Turma *turma, Professor *professor)
+{
+    if (turma && professor)
+    {
+        strcpy(turma->professor->matricula, professor->matricula);
+        strcpy(turma->professor->nome, professor->nome);
+        strcpy(turma->professor->cpf, professor->cpf);
+        turma->professor->endereco = professor->endereco;
+    }
+
+    return turma;
 }

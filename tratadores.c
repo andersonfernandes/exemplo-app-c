@@ -266,6 +266,31 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             }
             break;
         }
+        case 6:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                posicao = 0;
+                professor = buscar_professor(professores, &posicao);
+
+                if (professor)
+                {
+                    adicionarProfessor(turma, professor);
+                    printf("Professor adicionado com sucesso!\n");
+                }
+                else
+                {
+                    printf("Professor não encontrado!!\n");
+                }
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
         default:
             printf("Retornando ao menu principal\n");
             break;
