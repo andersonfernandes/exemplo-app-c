@@ -138,6 +138,7 @@ Turma *criarTurma(char *codigo_turma,
     {
         strcpy(turma->codigo, codigo_turma);
         strcpy(turma->nome_disciplina, nome_disciplina);
+        turma->professor = NULL;
         turma->media_turma = media_turma;
         turma->qtd_alunos = 0;
     }
@@ -170,6 +171,7 @@ void destruirTurma(Turma *turma)
 
 Turma *adicionarProfessor(Turma *turma, Professor *professor)
 {
+    turma->professor = (Professor *)realloc(turma->professor, sizeof(Professor));
     if (turma && professor)
     {
         strcpy(turma->professor->matricula, professor->matricula);
