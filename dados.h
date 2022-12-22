@@ -69,10 +69,14 @@ void destruirProfessor(Professor *professor);
 
 /* --- Turma --- */
 
+Turma *atualizarTurma(Turma *turma, Turma *nova_turma);
+
 Turma *criarTurma(char *codigo_turma,
                   char *nome_disciplina,
                   float media_turma);
 
 Turma *adicionarAluno(Turma *turma, Aluno *aluno);
+
+void destruirTurma(Turma *turma);
 
 #endif

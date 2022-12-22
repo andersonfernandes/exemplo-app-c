@@ -2,10 +2,11 @@
 #define _TRATADORES_H_
 
 #include "dados.h"
+
 void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno);
 void tratador_menu_professor(Professor **professores, int *qtd_atual_professor);
-void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma);
 void tratador_menu_estatisticas(Turma **turmas, Professor **professores);
+void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores, int *qtd_atual_turma);
 
 Endereco *construir_endereco();
 void imprimir_endereco(Endereco *endereco);
@@ -22,8 +23,8 @@ void imprimir_professor(Professor *professor);
 
 Turma *construir_turma();
 Turma *buscar_turma(Turma **turmas, int *posicao);
+Turma *atualizar_turma();
 void imprimir_turma(Turma *turma);
-void adicionar_aluno(Turma *turma, Aluno *aluno);
 
 void imprimir_nomes_dos_professores(Professor **professores);
 void imprimir_professores_sem_turma(Professor **professores, Turma **turmas);
