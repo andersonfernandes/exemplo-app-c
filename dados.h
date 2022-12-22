@@ -73,4 +73,6 @@ Turma *criarTurma(char *codigo_turma,
 
 Turma *adicionarAluno(Turma *turma, Aluno *aluno);
 
+void destruirTurma(Turma *turma);
+
 #endif

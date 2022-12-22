@@ -216,6 +216,37 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             turma = buscar_turma(turmas, &posicao);
             if (turma)
             {
+                atualizar_turma(turma);
+                printf("Turma atualizada com sucesso!\n");
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
+        case 4:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                destruirTurma(turma);
+                turmas[posicao] = NULL;
+                printf("Turma destruida\n");
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+        }
+        break;
+        case 5:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
                 posicao = 0;
                 aluno = buscar_aluno(alunos, &posicao);
 
@@ -234,20 +265,6 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
                 printf("Turma não encontrada!!\n");
             }
             break;
-        }
-        case 4:
-        {
-            int posicao = 0;
-            turma = buscar_turma(turmas, &posicao);
-            if (turma)
-            {
-                atualizar_turma(turma);
-                printf("Turma atualizada com sucesso!\n");
-            }
-            else
-            {
-                printf("Turma não encontrada!!\n");
-            }
         }
         default:
             printf("Retornando ao menu principal\n");
