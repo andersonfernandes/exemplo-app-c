@@ -29,7 +29,7 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
             }
             Aluno *aluno = construir_aluno();
             alunos[i] = aluno;
-            *qtd_atual_aluno++;
+            *qtd_atual_aluno = *qtd_atual_aluno + 1;
         }
         break;
     case 2:
@@ -69,6 +69,7 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
         {
             destruirAluno(aluno);
             alunos[posicao] = NULL;
+            *qtd_atual_aluno = *qtd_atual_aluno - 1;
             printf("Aluno destruido\n");
         }
         else
@@ -109,7 +110,7 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
             }
             Professor *professor = construir_professor();
             professores[i] = professor;
-            *qtd_atual_professor++;
+            *qtd_atual_professor = *qtd_atual_professor + 1;
         }
         break;
     case 2:
@@ -149,6 +150,7 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
         {
             destruirProfessor(professor);
             professores[posicao] = NULL;
+            *qtd_atual_professor = *qtd_atual_professor - 1;
             printf("Professor destruido\n");
         }
         else
@@ -193,7 +195,7 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
                 }
                 Turma *turma = construir_turma();
                 turmas[i] = turma;
-                *qtd_atual_turma++;
+                *qtd_atual_turma = *qtd_atual_turma + 1;
             }
             break;
         case 2:
@@ -233,14 +235,15 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             {
                 destruirTurma(turma);
                 turmas[posicao] = NULL;
+                *qtd_atual_turma = *qtd_atual_turma - 1;
                 printf("Turma destruida\n");
             }
             else
             {
                 printf("Turma não encontrada!!\n");
             }
+            break;
         }
-        break;
         case 5:
         {
             int posicao = 0;
