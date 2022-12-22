@@ -119,6 +119,16 @@ void destruirProfessor(Professor *professor)
 
 /*  ----------------------  */
 
+Turma *atualizarTurma(Turma *turma, Turma *nova_turma)
+{
+    if (turma && nova_turma)
+    {
+        strcpy(turma->nome_disciplina, nova_turma->nome_disciplina);
+        turma->media_turma = nova_turma->media_turma;
+    }
+    return turma;
+}
+
 Turma *criarTurma(char *codigo_turma,
                   char *nome_disciplina,
                   float media_turma) 
@@ -147,8 +157,6 @@ Turma *adicionarAluno(Turma *turma, Aluno *aluno) {
         strcpy(turma->lista_alunos[turma->qtd_alunos].cpf, aluno->cpf);
         turma->lista_alunos[turma->qtd_alunos].endereco = aluno->endereco;
         turma->qtd_alunos += 1;
-        
-        printf("%s", turma->lista_alunos[turma->qtd_alunos].nome);
     }
     return turma;
 }

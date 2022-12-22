@@ -65,6 +65,8 @@ void destruirProfessor(Professor *professor);
 
 /* --------------------- */
 
+Turma *atualizarTurma(Turma *turma, Turma *nova_turma);
+
 Turma *criarTurma(char *codigo_turma,
                   char *nome_disciplina,
                   float media_turma);

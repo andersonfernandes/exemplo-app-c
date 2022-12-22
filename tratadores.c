@@ -164,11 +164,13 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
     }
 }
 
-void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma)
+void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores, int *qtd_atual_turma)
 {
     int opcao = menu_crud_turma();
     Turma *turma = NULL;
     Aluno *aluno = NULL;
+    Professor *professor = NULL;
+    
     switch (opcao)
     {
         case 1:
@@ -232,6 +234,20 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma)
                 printf("Turma não encontrada!!\n");
             }
             break;
+        }
+        case 4:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                atualizar_turma(turma);
+                printf("Turma atualizada com sucesso!\n");
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
         }
         default:
             printf("Retornando ao menu principal\n");
@@ -405,6 +421,16 @@ Turma *buscar_turma(Turma **turmas, int *posicao)
     }
     *posicao = pos_resultado;
     return resultado;
+}
+
+Turma *atualizar_turma(Turma *turma)
+{
+    Turma nova_turma;
+    printf("Nome da Disciplina\t> ");
+    fgets(nova_turma.nome_disciplina, 12, stdin);
+    printf("Media\t> ");
+    scanf("%f", &nova_turma.media_turma);
+    return atualizarTurma(turma, &nova_turma);
 }
 
 void imprimir_turma(Turma *turma)
