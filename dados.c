@@ -160,3 +160,9 @@ Turma *adicionarAluno(Turma *turma, Aluno *aluno) {
     }
     return turma;
 }
+
+void destruirTurma(Turma *turma)
+{
+    if (turma)
+        free(turma);
+}

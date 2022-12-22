@@ -76,9 +76,10 @@ int menu_crud_turma()
         printf("== Menu turma==\n\n");
         printf("1 - Criar turma\n");
         printf("2 - Ler turma\n");
-        printf("3 - Adicionar aluno\n");
-        printf("4 - Atualizar turma\n");
-        printf("5 - Voltar menu anterior\n");
+        printf("3 - Atualizar turma\n");
+        printf("4 - Deletar turma\n");
+        printf("5 - Adicionar aluno\n");
+        printf("6 - Voltar menu anterior\n");
         printf("Opcao > ");
         scanf("%d", &opcao);
         getchar();
