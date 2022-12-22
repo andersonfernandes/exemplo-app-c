@@ -1,8 +1,8 @@
+#include <stdio.h>
+#include <string.h>
 #include "tratadores.h"
 #include "menus.h"
-#include <stdio.h>
 #include "constantes.h"
-#include <string.h>
 
 void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
 {
@@ -17,13 +17,11 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
         }
         else
         {
-            // Passo 1: buscar posicao disponível
             int i = 0;
             for (; i <= *qtd_atual_aluno; i++)
             {
                 if (alunos[i] == NULL)
                 {
-                    // significa que esta posição está livre para uso
                     break;
                 }
             }
@@ -98,13 +96,11 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
         }
         else
         {
-            // Passo 1: buscar posicao disponível
             int i = 0;
             for (; i <= *qtd_atual_professor; i++)
             {
                 if (professores[i] == NULL)
                 {
-                    // significa que esta posição está livre para uso
                     break;
                 }
             }
@@ -183,14 +179,12 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             }
             else
             {
-                // Passo 1: buscar posicao disponível
                 int i = 0;
                 for (; i <= *qtd_atual_turma; i++)
                 {
                     if (turmas[i] == NULL)
                     {
-                        // significa que esta posição está livre para uso
-                        break;
+                       break;
                     }
                 }
                 Turma *turma = construir_turma();
@@ -326,10 +320,28 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
     }
 }
 
+void tratador_menu_estatisticas(Turma **turmas, Professor **professores)
+{
+    int opcao = menu_estatisticas();
+    switch (opcao)
+    {
+        case 1:
+            imprimir_nomes_dos_professores(professores);
+            break;
+        case 2:
+            imprimir_professores_sem_turma(professores, turmas);
+            break;
+        case 3:
+            imprimir_media_de_turmas(turmas);
+            break;
+        case 4:
+            break;
+    }
+}
+
 Endereco *construir_endereco()
 {
     Endereco endereco;
-    // getchar();
 
     printf("Logradouro\t> ");
     fgets(endereco.logradouro, 49, stdin);
@@ -357,6 +369,7 @@ Aluno *construir_aluno()
     aluno.endereco = construir_endereco();
     return criarAluno(aluno.matricula, aluno.cpf, aluno.nome, aluno.endereco);
 }
+
 Aluno *atualizar_aluno(Aluno *aluno)
 {
     Aluno novo_aluno;
@@ -367,6 +380,7 @@ Aluno *atualizar_aluno(Aluno *aluno)
     novo_aluno.endereco = construir_endereco();
     return atualizarAluno(aluno, &novo_aluno); 
 }
+
 Aluno *buscar_aluno(Aluno **alunos, int *posicao)
 {
     char matricula[50];
@@ -376,8 +390,6 @@ Aluno *buscar_aluno(Aluno **alunos, int *posicao)
     int pos_resultado = -1;
     for (int i = 0; i < MAX_ALUNO; i++)
     {
-        // Vamos testar se o aluno existe e se a matricula e a buscada
-        // strcmp compara strings. Se for 0 indica que são iguais
         if (alunos[i] && !strcmp(matricula, alunos[i]->matricula))
         {
             resultado = alunos[i];
@@ -419,6 +431,7 @@ Professor *construir_professor()
     professor.endereco = construir_endereco();
     return criarProfessor(professor.matricula, professor.cpf, professor.nome, professor.endereco);
 }
+
 Professor *atualizar_professor(Professor *professor)
 {
     Professor novo_professor;
@@ -429,6 +442,7 @@ Professor *atualizar_professor(Professor *professor)
     novo_professor.endereco = construir_endereco();
     return atualizarProfessor(professor, &novo_professor); 
 }
+
 Professor *buscar_professor(Professor **professores, int *posicao)
 {
     char matricula[50];
@@ -438,8 +452,6 @@ Professor *buscar_professor(Professor **professores, int *posicao)
     int pos_resultado = -1;
     for (int i = 0; i < MAX_PROFESSOR; i++)
     {
-        // Vamos testar se o professor existe e se a matricula e a buscada
-        // strcmp compara strings. Se for 0 indica que são iguais
         if (professores[i] && !strcmp(matricula, professores[i]->matricula))
         {
             resultado = professores[i];
@@ -482,8 +494,6 @@ Turma *buscar_turma(Turma **turmas, int *posicao)
     int pos_resultado = -1;
     for (int i = 0; i < MAX_TURMA; i++)
     {
-        // Vamos testar se o aluno existe e se a codigo e a buscada
-        // strcmp compara strings. Se for 0 indica que são iguais
         if (turmas[i] && !strcmp(codigo, turmas[i]->codigo))
         {
             resultado = turmas[i];
@@ -528,4 +538,114 @@ void imprimir_turma(Turma *turma)
             printf("---------------------\n");
         }
     }
+}
+
+void adicionar_aluno(Turma *turma, Aluno *aluno)
+{
+    adicionarAluno(turma, aluno);
+}
+
+void imprimir_nomes_dos_professores(Professor **professores)
+{
+    if (professores[0] == NULL)
+    {
+        printf("\nSem professores cadastrados.\n\n");
+        return;
+    }
+
+    printf("== Lista de Professores ==\n\n");
+
+    for (int i = 0; i < MAX_PROFESSOR; i++)
+    {
+        if (professores[i] == NULL)
+        {
+
+            printf("\n");
+            return;
+        }
+
+        printf("> %s", professores[i]->nome);
+    }
+}
+
+void imprimir_professores_sem_turma(Professor **professores, Turma **turmas)
+{
+    if (professores[0] == NULL)
+    {
+        printf("\nSem professores cadastrados.\n\n");
+        return;
+    }
+
+    printf("== Lista de Professores sem turma ==\n\n");
+
+    int qtd_professores_sem_turma = 0;
+    Professor *professores_sem_turma[MAX_PROFESSOR];
+    for (int i = 0; i < MAX_PROFESSOR; i++)
+    {
+        if (professores[i] == NULL)
+        {
+            break;
+        }
+
+        int turma_achada = 0;
+        for (int i = 0; i < MAX_TURMA; i++)
+        {
+            if (turmas[i] == NULL)
+            {
+                break;
+            }
+
+            if (turmas[i]->professor == professores[i])
+            {
+                turma_achada = 1;
+                break;
+            }
+        }
+
+        if (!turma_achada)
+        {
+            professores_sem_turma[qtd_professores_sem_turma] = professores[i];
+            ++qtd_professores_sem_turma;
+        }
+    }
+
+    if (professores_sem_turma[0] == NULL)
+    {
+        printf("\nTodos os professores cadastratos estão alocados em turma\n\n");
+        return;
+    }
+
+    for (int i = 0; i < qtd_professores_sem_turma; i++)
+    {
+        if (professores_sem_turma[i] == NULL)
+        {
+            break;
+        }
+
+        printf("> %s", professores_sem_turma[i]->matricula);
+    }
+}
+
+void imprimir_media_de_turmas(Turma **turmas)
+{
+    if (turmas[0] == NULL)
+    {
+        printf("\nSem turmas cadastrados.\n\n");
+        return;
+    }
+
+    float soma = 0.0;
+    int qtd_turmas = 0;
+    for (int i = 0; i < MAX_TURMA; i++)
+    {
+        if (turmas[i] == NULL)
+        {
+            break;
+        }
+
+        ++qtd_turmas;
+        soma += turmas[i]->media_turma;
+    }
+
+    printf("\n\nNota média de todas as turmas: %.2f\n\n", soma / qtd_turmas);
 }

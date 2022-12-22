@@ -9,18 +9,18 @@
 ## Próximos passos
 - [x] Implementar a atualização de um aluno
 - [x] Criar modelo de dados de Professor e Turmas
-- [x] Implementar menus de Professor e Turma para realização das operações de CRUD (Criação, recuperação, atualização e deleção)
-- [] Adicionar um menu denominado "Estatística" no menu principal com as seguintes opções:
-  - [] Imprimir nome dos professores
-  - [] Imprimir matrículas dos professores que não estão em nenhuma turma
-  - [] Calcular nota média de todas as turmas
+- [X] Implementar menus de Professor e Turma para realização das operações de CRUD (Criação, recuperação, atualização e deleção)
+- [X] Adicionar um menu denominado "Estatística" no menu principal com as seguintes opções:
+  - Imprimir nome dos professores
+  - Imprimir matrículas dos professores que não estão em nenhuma turma
+  - Calcular nota média de todas as turmas
 
 ### Restrições
-- [] O sistema não deve permitir a inserção de dois alunos com matrículas ouo cpf iguais
-- [] O sistema não deve permitir a inserção de dois professores com matrículas ouo cpf iguais
-- [] O sistema não deve permitir a inserção de duas turmas com códigos iguais
-- [] O sistema não deve permitir que um aluno seja deletado caso esteja associado a alguma turma
-- [] O sistema não deve permitir que um professor seja deletado caso ele esteja associado a uma turma
+- [ ] O sistema não deve permitir a inserção de dois alunos com matrículas ouo cpf iguais
+- [ ] O sistema não deve permitir a inserção de dois professores com matrículas ouo cpf iguais
+- [ ] O sistema não deve permitir a inserção de duas turmas com códigos iguais
+- [ ] O sistema não deve permitir que um aluno seja deletado caso esteja associado a alguma turma
+- [ ] O sistema não deve permitir que um professor seja deletado caso ele esteja associado a uma turma
 
 ## Modelos de dados
 
