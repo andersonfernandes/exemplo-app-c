@@ -296,6 +296,27 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
         }
         case 7:
         {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                posicao = 0;
+                aluno = buscar_aluno(alunos, &posicao);
+                if (aluno)
+                {
+                    turma->lista_alunos[posicao] = NULL;
+                    turma->qtd_alunos = turma->qtd_alunos - 1;
+                    printf("Aluno removido com sucesso!\n");
+                }
+                else
+                {
+                    printf("Aluno não encontrado!!\n");
+                }
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
             break;
         }
         case 8:
@@ -381,6 +402,7 @@ Aluno *buscar_aluno(Aluno **alunos, int *posicao)
         if (alunos[i] && !strcmp(matricula, alunos[i]->matricula))
         {
             resultado = alunos[i];
+            pos_resultado = i;
             break;
         }
     }
@@ -443,6 +465,7 @@ Professor *buscar_professor(Professor **professores, int *posicao)
         if (professores[i] && !strcmp(matricula, professores[i]->matricula))
         {
             resultado = professores[i];
+            pos_resultado = i;
             break;
         }
     }
@@ -520,12 +543,15 @@ void imprimir_turma(Turma *turma)
     
     if (turma->qtd_alunos != 0) {
         printf("---------------------\n");
-        for (int i = 0; i < turma->qtd_alunos; i++)
+        for (int i = 0; i < MAX_ALUNO; i++)
         {
-            printf("Nº do aluno: %d\n", i+1);
-            printf("Matrícula do aluno: %s", turma->lista_alunos[i]->matricula);
-            printf("Nome do aluno: %s", turma->lista_alunos[i]->nome);
-            printf("---------------------\n");
+            if(turma->lista_alunos[i])
+            {
+                // printf("Nº do aluno: %d\n", i+1);
+                printf("Matrícula do aluno: %s", turma->lista_alunos[i]->matricula);
+                printf("Nome do aluno: %s", turma->lista_alunos[i]->nome);
+                printf("---------------------\n");
+            }
         }
     }
 }

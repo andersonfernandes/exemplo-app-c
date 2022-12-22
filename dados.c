@@ -154,8 +154,16 @@ Turma *adicionarAluno(Turma *turma, Aluno *aluno)
 {
     if (turma && aluno) 
     {
-        turma->lista_alunos[turma->qtd_alunos] = aluno;
-        turma->qtd_alunos += 1;
+        for (int i = 0; i < 100; i++)
+        {
+            if(turma->lista_alunos[i] == NULL)
+            {
+                turma->lista_alunos[i] = aluno;
+                turma->qtd_alunos += 1;
+                break;
+            }
+        }
+        
     }
     return turma;
 }
