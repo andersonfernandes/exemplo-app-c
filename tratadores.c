@@ -433,6 +433,7 @@ Turma *buscar_turma(Turma **turmas, int *posicao)
         if (turmas[i] && !strcmp(codigo, turmas[i]->codigo))
         {
             resultado = turmas[i];
+            pos_resultado = i;
             break;
         }
     }
