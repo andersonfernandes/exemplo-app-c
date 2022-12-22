@@ -524,8 +524,8 @@ void imprimir_turma(Turma *turma)
         for (int i = 0; i < turma->qtd_alunos; i++)
         {
             printf("Nº do aluno: %d\n", i+1);
-            printf("Matrícula do aluno: %s", turma->lista_alunos[i].matricula);
-            printf("Nome do aluno: %s", turma->lista_alunos[i].nome);
+            printf("Matrícula do aluno: %s", turma->lista_alunos[i]->matricula);
+            printf("Nome do aluno: %s", turma->lista_alunos[i]->nome);
             printf("---------------------\n");
         }
     }

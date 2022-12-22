@@ -154,10 +154,7 @@ Turma *adicionarAluno(Turma *turma, Aluno *aluno)
 {
     if (turma && aluno) 
     {
-        strcpy(turma->lista_alunos[turma->qtd_alunos].matricula, aluno->matricula);
-        strcpy(turma->lista_alunos[turma->qtd_alunos].nome, aluno->nome);
-        strcpy(turma->lista_alunos[turma->qtd_alunos].cpf, aluno->cpf);
-        turma->lista_alunos[turma->qtd_alunos].endereco = aluno->endereco;
+        turma->lista_alunos[turma->qtd_alunos] = aluno;
         turma->qtd_alunos += 1;
     }
     return turma;
@@ -174,10 +171,7 @@ Turma *adicionarProfessor(Turma *turma, Professor *professor)
     turma->professor = (Professor *)realloc(turma->professor, sizeof(Professor));
     if (turma && professor)
     {
-        strcpy(turma->professor->matricula, professor->matricula);
-        strcpy(turma->professor->nome, professor->nome);
-        strcpy(turma->professor->cpf, professor->cpf);
-        turma->professor->endereco = professor->endereco;
+        turma->professor = professor;
     }
 
     return turma;

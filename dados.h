@@ -32,7 +32,7 @@ typedef struct
     char codigo[50];
     char nome_disciplina[50];
     Professor *professor;
-    Aluno lista_alunos[100];
+    Aluno *lista_alunos[100];
     float media_turma;
     int qtd_alunos;
 } Turma;
