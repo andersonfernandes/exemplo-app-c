@@ -141,6 +141,7 @@ Turma *criarTurma(char *codigo_turma,
     {
         strcpy(turma->codigo, codigo_turma);
         strcpy(turma->nome_disciplina, nome_disciplina);
+        turma->professor = NULL;
         turma->media_turma = media_turma;
         turma->qtd_alunos = 0;
     }
@@ -152,13 +153,11 @@ Turma *criarTurma(char *codigo_turma,
     return turma;
 }
 
-Turma *adicionarAluno(Turma *turma, Aluno *aluno) {
+Turma *adicionarAluno(Turma *turma, Aluno *aluno) 
+{
     if (turma && aluno) 
     {
-        strcpy(turma->lista_alunos[turma->qtd_alunos].matricula, aluno->matricula);
-        strcpy(turma->lista_alunos[turma->qtd_alunos].nome, aluno->nome);
-        strcpy(turma->lista_alunos[turma->qtd_alunos].cpf, aluno->cpf);
-        turma->lista_alunos[turma->qtd_alunos].endereco = aluno->endereco;
+        turma->lista_alunos[turma->qtd_alunos] = aluno;
         turma->qtd_alunos += 1;
     }
     return turma;
@@ -168,4 +167,15 @@ void destruirTurma(Turma *turma)
 {
     if (turma)
         free(turma);
+}
+
+Turma *adicionarProfessor(Turma *turma, Professor *professor)
+{
+    turma->professor = (Professor *)realloc(turma->professor, sizeof(Professor));
+    if (turma && professor)
+    {
+        turma->professor = professor;
+    }
+
+    return turma;
 }

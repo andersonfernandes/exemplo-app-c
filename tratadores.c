@@ -27,7 +27,7 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
             }
             Aluno *aluno = construir_aluno();
             alunos[i] = aluno;
-            *qtd_atual_aluno++;
+            *qtd_atual_aluno = *qtd_atual_aluno + 1;
         }
         break;
     case 2:
@@ -67,6 +67,7 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
         {
             destruirAluno(aluno);
             alunos[posicao] = NULL;
+            *qtd_atual_aluno = *qtd_atual_aluno - 1;
             printf("Aluno destruido\n");
         }
         else
@@ -105,7 +106,7 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
             }
             Professor *professor = construir_professor();
             professores[i] = professor;
-            *qtd_atual_professor++;
+            *qtd_atual_professor = *qtd_atual_professor + 1;
         }
         break;
     case 2:
@@ -145,6 +146,7 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
         {
             destruirProfessor(professor);
             professores[posicao] = NULL;
+            *qtd_atual_professor = *qtd_atual_professor - 1;
             printf("Professor destruido\n");
         }
         else
@@ -187,7 +189,7 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
                 }
                 Turma *turma = construir_turma();
                 turmas[i] = turma;
-                *qtd_atual_turma++;
+                *qtd_atual_turma = *qtd_atual_turma + 1;
             }
             break;
         case 2:
@@ -227,14 +229,15 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             {
                 destruirTurma(turma);
                 turmas[posicao] = NULL;
+                *qtd_atual_turma = *qtd_atual_turma - 1;
                 printf("Turma destruida\n");
             }
             else
             {
                 printf("Turma não encontrada!!\n");
             }
+            break;
         }
-        break;
         case 5:
         {
             int posicao = 0;
@@ -252,6 +255,57 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
                 else
                 {
                     printf("Aluno não encontrado!!\n");
+                }
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
+        case 6:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                posicao = 0;
+                professor = buscar_professor(professores, &posicao);
+
+                if (professor)
+                {
+                    adicionarProfessor(turma, professor);
+                    printf("Professor adicionado com sucesso!\n");
+                }
+                else
+                {
+                    printf("Professor não encontrado!!\n");
+                }
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
+        case 7:
+        {
+            break;
+        }
+        case 8:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                if (turma->professor)
+                {
+                    turma->professor = NULL;
+                    printf("Professor removido com sucesso!\n");
+                }
+                else
+                {
+                    printf("Turma não possui professor cadastrado!!\n");
                 }
             }
             else
@@ -479,8 +533,8 @@ void imprimir_turma(Turma *turma)
         for (int i = 0; i < turma->qtd_alunos; i++)
         {
             printf("Nº do aluno: %d\n", i+1);
-            printf("Matrícula do aluno: %s", turma->lista_alunos[i].matricula);
-            printf("Nome do aluno: %s", turma->lista_alunos[i].nome);
+            printf("Matrícula do aluno: %s", turma->lista_alunos[i]->matricula);
+            printf("Nome do aluno: %s", turma->lista_alunos[i]->nome);
             printf("---------------------\n");
         }
     }

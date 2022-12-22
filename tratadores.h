@@ -12,18 +12,18 @@ Endereco *construir_endereco();
 void imprimir_endereco(Endereco *endereco);
 
 Aluno *construir_aluno();
-Aluno *atualizar_aluno();
+Aluno *atualizar_aluno(Aluno *aluno);
 Aluno *buscar_aluno(Aluno **alunos, int *posicao);
 void imprimir_aluno(Aluno *aluno);
 
 Professor *construir_professor();
-Professor *atualizar_professor();
+Professor *atualizar_professor(Professor *professor);
 Professor *buscar_professor(Professor **professores, int *posicao);
 void imprimir_professor(Professor *professor);
 
 Turma *construir_turma();
 Turma *buscar_turma(Turma **turmas, int *posicao);
-Turma *atualizar_turma();
+Turma *atualizar_turma(Turma *turma);
 void imprimir_turma(Turma *turma);
 
 void imprimir_nomes_dos_professores(Professor **professores);
