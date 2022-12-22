@@ -244,6 +244,7 @@ void tratador_menu_estatisticas(Turma **turmas, Professor **professores)
         case 2:
             break;
         case 3:
+            imprimir_media_de_turmas(turmas);
             break;
         case 4:
             break;
@@ -464,4 +465,32 @@ void imprimir_nomes_dos_professores(Professor **professores)
 
         printf("> %s", professores[i]->nome);
     }
+}
+
+void imprimir_professores_sem_turma(Professor **professores, Turma **turmas)
+{
+}
+
+void imprimir_media_de_turmas(Turma **turmas)
+{
+    if (turmas[0] == NULL)
+    {
+        printf("\nSem turmas cadastrados.\n\n");
+        return;
+    }
+
+    float soma = 0.0;
+    int qtd_turmas = 0;
+    for (int i = 0; i < MAX_TURMA; i++)
+    {
+        if (turmas[i] == NULL)
+        {
+            break;
+        }
+
+        ++qtd_turmas;
+        soma += turmas[i]->media_turma;
+    }
+
+    printf("\n\nNota média de todas as turmas: %.2f\n\n", soma / qtd_turmas);
 }
