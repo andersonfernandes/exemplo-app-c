@@ -24,7 +24,6 @@ typedef struct
     char nome[50];
     char cpf[12];
     Endereco *endereco;
-
 } Professor;
 
 typedef struct 

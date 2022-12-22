@@ -10,7 +10,7 @@
 - [x] Implementar a atualização de um aluno
 - [x] Criar modelo de dados de Professor e Turmas
 - [X] Implementar menus de Professor e Turma para realização das operações de CRUD (Criação, recuperação, atualização e deleção)
-- [ ] Adicionar um menu denominado "Estatística" no menu principal com as seguintes opções:
+- [X] Adicionar um menu denominado "Estatística" no menu principal com as seguintes opções:
   - Imprimir nome dos professores
   - Imprimir matrículas dos professores que não estão em nenhuma turma
   - Calcular nota média de todas as turmas

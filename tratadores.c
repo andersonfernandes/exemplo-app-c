@@ -242,6 +242,7 @@ void tratador_menu_estatisticas(Turma **turmas, Professor **professores)
             imprimir_nomes_dos_professores(professores);
             break;
         case 2:
+            imprimir_professores_sem_turma(professores, turmas);
             break;
         case 3:
             imprimir_media_de_turmas(turmas);
@@ -469,6 +470,60 @@ void imprimir_nomes_dos_professores(Professor **professores)
 
 void imprimir_professores_sem_turma(Professor **professores, Turma **turmas)
 {
+    if (professores[0] == NULL)
+    {
+        printf("\nSem professores cadastrados.\n\n");
+        return;
+    }
+
+    printf("== Lista de Professores ==\n\n");
+
+    int qtd_professores_sem_turma = 0;
+    Professor *professores_sem_turma[MAX_PROFESSOR];
+    for (int i = 0; i < MAX_PROFESSOR; i++)
+    {
+        if (professores[i] == NULL)
+        {
+            break;
+        }
+
+        int turma_achada = 0;
+        for (int i = 0; i < MAX_TURMA; i++)
+        {
+            if (turmas[i] == NULL)
+            {
+                break;
+            }
+
+            if (turmas[i]->professor == professores[i])
+            {
+                turma_achada = 1;
+                break;
+            }
+        }
+
+        if (!turma_achada)
+        {
+            professores_sem_turma[qtd_professores_sem_turma] = professores[i];
+            ++qtd_professores_sem_turma;
+        }
+    }
+
+    if (professores_sem_turma[0] == NULL)
+    {
+        printf("\nTodos os professores cadastratos estão alocados em turma\n\n");
+        return;
+    }
+
+    for (int i = 0; i < qtd_professores_sem_turma; i++)
+    {
+        if (professores_sem_turma[i] == NULL)
+        {
+            break;
+        }
+
+        printf("> %s", professores_sem_turma[i]->matricula);
+    }
 }
 
 void imprimir_media_de_turmas(Turma **turmas)
