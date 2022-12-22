@@ -306,7 +306,6 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             {
                 if (turma->professor)
                 {
-                    removerProfessorTurma(turma);
                     turma->professor = NULL;
                     printf("Professor removido com sucesso!\n");
                 }

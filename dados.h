@@ -77,6 +77,4 @@ void destruirTurma(Turma *turma);
 
 Turma *adicionarProfessor(Turma *turma, Professor *professor);
 
-void removerProfessorTurma(Turma *turma);
-
 #endif
