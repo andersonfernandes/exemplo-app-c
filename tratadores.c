@@ -294,6 +294,33 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, Professor **professores
             }
             break;
         }
+        case 7:
+        {
+            break;
+        }
+        case 8:
+        {
+            int posicao = 0;
+            turma = buscar_turma(turmas, &posicao);
+            if (turma)
+            {
+                if (turma->professor)
+                {
+                    removerProfessorTurma(turma);
+                    turma->professor = NULL;
+                    printf("Professor removido com sucesso!\n");
+                }
+                else
+                {
+                    printf("Turma não possui professor cadastrado!!\n");
+                }
+            }
+            else
+            {
+                printf("Turma não encontrada!!\n");
+            }
+            break;
+        }
         default:
             printf("Retornando ao menu principal\n");
             break;

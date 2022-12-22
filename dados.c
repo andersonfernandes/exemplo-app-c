@@ -182,3 +182,9 @@ Turma *adicionarProfessor(Turma *turma, Professor *professor)
 
     return turma;
 }
+
+void removerProfessorTurma(Turma *turma)
+{
+    if (turma)
+        free(turma->professor);  
+}
