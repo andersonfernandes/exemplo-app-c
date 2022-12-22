@@ -1,4 +1,5 @@
 #include "dados.h"
+#include "constantes.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -44,6 +45,36 @@ void destruirAluno(Aluno *aluno)
         destruirEndereco(end);
         free(aluno);
     }
+}
+
+// campo: C => cpf, M => matricula
+int comparacaoAluno(Aluno **alunos, char campo, char *valor, int index)
+{
+    switch(campo)
+    {
+        case 'C':
+            return alunos[index] && !strcmp(valor, alunos[index]->cpf);
+            break;
+        case 'M':
+            return alunos[index] && !strcmp(valor, alunos[index]->matricula);
+            break;
+        default:
+            return alunos[index] && !strcmp(valor, alunos[index]->matricula);
+            break;
+    }
+}
+
+int buscarAluno(Aluno **alunos, char campo, char *valor)
+{
+    for (int i = 0; i < MAX_ALUNO; i++)
+    {
+        if (comparacaoAluno(alunos, campo, valor, i))
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 /* --- Endereco --- */
@@ -118,6 +149,37 @@ void destruirProfessor(Professor *professor)
         free(professor);
     }
 }
+
+// campo: C => cpf, M => matricula
+int comparacaoProfessor(Professor **professores, char campo, char *valor, int index)
+{
+    switch(campo)
+    {
+        case 'C':
+            return professores[index] && !strcmp(valor, professores[index]->cpf);
+            break;
+        case 'M':
+            return professores[index] && !strcmp(valor, professores[index]->matricula);
+            break;
+        default:
+            return professores[index] && !strcmp(valor, professores[index]->matricula);
+            break;
+    }
+}
+
+int buscarProfessor(Professor **professores, char campo, char *valor)
+{
+    for (int i = 0; i < MAX_PROFESSOR; i++)
+    {
+        if (comparacaoProfessor(professores, campo, valor, i))
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 
 
 /* --- Turma --- */

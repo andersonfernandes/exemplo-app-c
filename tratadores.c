@@ -387,16 +387,10 @@ Aluno *buscar_aluno(Aluno **alunos, int *posicao)
     printf("Matrícula do aluno > ");
     fgets(matricula, 49, stdin);
     Aluno *resultado = NULL;
-    int pos_resultado = -1;
-    for (int i = 0; i < MAX_ALUNO; i++)
-    {
-        if (alunos[i] && !strcmp(matricula, alunos[i]->matricula))
-        {
-            resultado = alunos[i];
-            break;
-        }
-    }
-    *posicao = pos_resultado;
+
+    *posicao = buscarAluno(alunos, 'M', matricula);
+    resultado = alunos[*posicao];
+
     return resultado;
 }
 
@@ -449,16 +443,10 @@ Professor *buscar_professor(Professor **professores, int *posicao)
     printf("Matrícula do professor> ");
     fgets(matricula, 49, stdin);
     Professor *resultado = NULL;
-    int pos_resultado = -1;
-    for (int i = 0; i < MAX_PROFESSOR; i++)
-    {
-        if (professores[i] && !strcmp(matricula, professores[i]->matricula))
-        {
-            resultado = professores[i];
-            break;
-        }
-    }
-    *posicao = pos_resultado;
+
+    *posicao = buscarProfessor(professores, 'M', matricula);
+    resultado = professores[*posicao];
+
     return resultado;
 }
 

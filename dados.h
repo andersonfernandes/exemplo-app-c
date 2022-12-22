@@ -45,7 +45,10 @@ Aluno *criarAluno(char *matricula,
 
 
 Aluno *atualizarAluno(Aluno *aluno, Aluno *novo_aluno); 
+
 void destruirAluno(Aluno *aluno);
+
+int buscarAluno(Aluno **alunos, char campo, char *valor);
 
 /* --- Endereco --- */
 
@@ -54,6 +57,7 @@ Endereco *criarEndereco(char *logradouro,
                         char *cidade,
                         char *estado,
                         char *numero);
+
 void destruirEndereco(Endereco *);
 
 /* --- Professor --- */
@@ -66,6 +70,8 @@ Professor *criarProfessor(char *matricula,
 Professor *atualizarProfessor(Professor *professor, Professor *novo_professor); 
 
 void destruirProfessor(Professor *professor);
+
+int buscarProfessor(Professor **professores, char campo, char *valor);
 
 /* --- Turma --- */
 
