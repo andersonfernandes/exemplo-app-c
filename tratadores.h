@@ -34,6 +34,5 @@ void imprimir_professor(Professor *professor);
 Turma *construir_turma();
 Turma *buscar_turma(Turma **turmas, int *posicao);
 void imprimir_turma(Turma *turma);
-void adicionar_aluno(Turma *turma, Aluno *aluno);
 
 #endif

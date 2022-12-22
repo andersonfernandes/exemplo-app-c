@@ -219,7 +219,7 @@ void tratador_menu_turma(Turma **turmas, Aluno **alunos, int *qtd_atual_turma)
 
                 if (aluno)
                 {
-                    adicionar_aluno(turma, aluno);
+                    adicionarAluno(turma, aluno);
                     printf("Aluno adicionado com sucesso!\n");
                 }
                 else
@@ -349,9 +349,9 @@ Professor *buscar_professor(Professor **professores, int *posicao)
     fgets(matricula, 49, stdin);
     Professor *resultado = NULL;
     int pos_resultado = -1;
-    for (int i = 0; i < MAX_ALUNO; i++)
+    for (int i = 0; i < MAX_PROFESSOR; i++)
     {
-        // Vamos testar se o aluno existe e se a matricula e a buscada
+        // Vamos testar se o professor existe e se a matricula e a buscada
         // strcmp compara strings. Se for 0 indica que são iguais
         if (professores[i] && !strcmp(matricula, professores[i]->matricula))
         {
@@ -409,7 +409,7 @@ Turma *buscar_turma(Turma **turmas, int *posicao)
 
 void imprimir_turma(Turma *turma)
 {
-    printf("== Turma %s ==", turma->codigo);
+    printf("== Turma ==\n");
     printf("Codigo: %s", turma->codigo);
     printf("Nome da Disciplina: %s", turma->nome_disciplina);
     printf("Media da Turma: %.2f\n", turma->media_turma);
@@ -421,16 +421,13 @@ void imprimir_turma(Turma *turma)
     }
     
     if (turma->qtd_alunos != 0) {
+        printf("---------------------\n");
         for (int i = 0; i < turma->qtd_alunos; i++)
         {
             printf("Nº do aluno: %d\n", i+1);
-            printf("Nome do aluno: %s", turma->lista_alunos[i].nome);
             printf("Matrícula do aluno: %s", turma->lista_alunos[i].matricula);
+            printf("Nome do aluno: %s", turma->lista_alunos[i].nome);
+            printf("---------------------\n");
         }
     }
-}
-
-void adicionar_aluno(Turma *turma, Aluno *aluno)
-{
-    adicionarAluno(turma, aluno);
 }
